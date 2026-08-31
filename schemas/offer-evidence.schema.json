@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/offer-evidence.schema.json",
+  "title": "Grocery Offer Evidence",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "offers"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "offers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "item_id",
+          "service",
+          "product",
+          "package_quantity",
+          "unit",
+          "item_price",
+          "coupon_amount",
+          "mandatory_fees",
+          "estimated_delivered_price",
+          "availability",
+          "source_url",
+          "checked_at",
+          "confidence"
+        ],
+        "properties": {
+          "availability": {
+            "enum": [
+              "in-stock",
+              "low-stock",
+              "out-of-stock",
+              "unknown"
+            ]
+          },
+          "confidence": {
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}
+

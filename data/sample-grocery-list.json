@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "sample": true,
+  "owner_label": "Fictional example household",
+  "updated_at": "2026-09-05T09:00:00Z",
+  "items": [
+    {
+      "id": "GRC-001",
+      "name": "Brown rice",
+      "state": "recurring",
+      "include": true,
+      "cadence": "weekly",
+      "target_days": 7,
+      "quantity_on_hand": 0.5,
+      "reorder_threshold": 1.0,
+      "target_quantity": 2.0,
+      "unit": "lb",
+      "preferred_specification": "Long-grain brown rice; no brand preference",
+      "allow_substitutions": true,
+      "protected_attributes": [
+        "brown rice"
+      ],
+      "max_delivered_price": 8.0,
+      "notes": "Fictional sample row."
+    },
+    {
+      "id": "GRC-002",
+      "name": "Frozen mixed vegetables",
+      "state": "this-week",
+      "include": true,
+      "cadence": "as-needed",
+      "target_days": 7,
+      "quantity_on_hand": 0.0,
+      "reorder_threshold": 0.5,
+      "target_quantity": 1.0,
+      "unit": "lb",
+      "preferred_specification": "Plain mixed vegetables without sauce",
+      "allow_substitutions": true,
+      "protected_attributes": [
+        "no sauce",
+        "frozen"
+      ],
+      "max_delivered_price": 6.0,
+      "notes": "Fictional sample row."
+    },
+    {
+      "id": "GRC-003",
+      "name": "Olive oil",
+      "state": "one-time",
+      "include": false,
+      "cadence": "as-needed",
+      "target_days": 30,
+      "quantity_on_hand": 20.0,
+      "reorder_threshold": 8.0,
+      "target_quantity": 25.0,
+      "unit": "fl oz",
+      "preferred_specification": "Extra virgin olive oil",
+      "allow_substitutions": false,
+      "protected_attributes": [
+        "extra virgin"
+      ],
+      "max_delivered_price": 18.0,
+      "notes": "Fictional sample row excluded from the current review."
+    }
+  ]
+}
+

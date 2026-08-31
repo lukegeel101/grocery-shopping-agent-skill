@@ -1,0 +1,7 @@
+interface:
+  display_name: "Grocery Shopping Agent"
+  short_description: "Review grocery lists, deals, and substitutions"
+  default_prompt: "Use $grocery-shopping-agent-skill to review my grocery list and prepare an approval-gated shopping plan."
+
+policy:
+  allow_implicit_invocation: true

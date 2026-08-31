@@ -1,0 +1,17 @@
+# Private runtime state
+config/grocery.private.json
+data/private/
+data/current-grocery-list.json
+data/price-history.ndjson
+data/review-state.json
+*.local.json
+*.secret.json
+.env
+.env.*
+
+# Runtime files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+

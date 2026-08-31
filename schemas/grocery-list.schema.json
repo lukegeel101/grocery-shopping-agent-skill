@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/grocery-list.schema.json",
+  "title": "Grocery Shopping Agent State",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "updated_at",
+    "items"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "sample": {
+      "type": "boolean"
+    },
+    "owner_label": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/item"
+      }
+    }
+  },
+  "$defs": {
+    "item": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "state",
+        "include",
+        "cadence",
+        "target_days",
+        "target_quantity",
+        "unit",
+        "allow_substitutions",
+        "protected_attributes"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "state": {
+          "enum": [
+            "recurring",
+            "this-week",
+            "one-time"
+          ]
+        },
+        "include": {
+          "type": "boolean"
+        },
+        "cadence": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_days": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "target_quantity": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "allow_substitutions": {
+          "type": "boolean"
+        },
+        "protected_attributes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
+

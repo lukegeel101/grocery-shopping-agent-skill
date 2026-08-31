@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "sample": true,
+  "offers": [
+    {
+      "item_id": "GRC-001",
+      "service": "Example Market Delivery",
+      "product": "Fictional Brown Rice",
+      "package_quantity": 2.0,
+      "unit": "lb",
+      "item_price": 6.5,
+      "coupon_amount": 1.0,
+      "mandatory_fees": 0.75,
+      "estimated_delivered_price": 6.25,
+      "availability": "in-stock",
+      "membership_required": false,
+      "coupon_expires_at": "2026-09-11T23:59:59Z",
+      "source_url": "https://example.com/fictional-brown-rice",
+      "checked_at": "2026-09-05T10:00:00Z",
+      "confidence": "high"
+    },
+    {
+      "item_id": "GRC-002",
+      "service": "Example Market Delivery",
+      "product": "Fictional Frozen Mixed Vegetables",
+      "package_quantity": 1.0,
+      "unit": "lb",
+      "item_price": 3.4,
+      "coupon_amount": 0.0,
+      "mandatory_fees": 0.5,
+      "estimated_delivered_price": 3.9,
+      "availability": "in-stock",
+      "membership_required": false,
+      "coupon_expires_at": null,
+      "source_url": "https://example.com/fictional-mixed-vegetables",
+      "checked_at": "2026-09-05T10:00:00Z",
+      "confidence": "medium"
+    }
+  ]
+}
+

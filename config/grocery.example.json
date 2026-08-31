@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "profile_label": "Example household",
+  "market_region": "Central District, Example City",
+  "review": {
+    "schedule": "weekly",
+    "day": "Saturday",
+    "local_time": "09:00",
+    "timezone": "America/New_York",
+    "lookahead_days": 7
+  },
+  "research": {
+    "max_evidence_age_hours": 48,
+    "prefer_complete_basket": true,
+    "split_order_savings_threshold": 5.0,
+    "keep_tips_separate": true,
+    "treat_checkout_taxes_as_estimates": true
+  },
+  "substitutions": {
+    "require_item_permission": true,
+    "require_approval_for_protected_attribute_change": true,
+    "require_approval_for_price_increase_percent": 10
+  },
+  "authority": {
+    "research": true,
+    "edit_local_state": true,
+    "sign_in": false,
+    "place_order": false,
+    "submit_payment": false,
+    "change_account": false
+  },
+  "paths": {
+    "grocery_state": "data/sample-grocery-list.json",
+    "offer_evidence": "data/sample-offers.json"
+  }
+}
+
