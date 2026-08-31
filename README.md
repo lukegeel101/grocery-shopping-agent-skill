@@ -5,7 +5,7 @@
   <p>
     <img src="https://img.shields.io/badge/mode-review%20only-16a34a?style=for-the-badge" alt="Review only">
     <img src="https://img.shields.io/badge/works%20with-ChatGPT%20%2B%20Claude-0f766e?style=for-the-badge" alt="Works with ChatGPT and Claude">
-    <img src="https://img.shields.io/badge/tests-5%20passing-65a30d?style=for-the-badge" alt="Five passing tests">
+    <a href="https://github.com/lukegeel101/grocery-shopping-agent-skill/actions/workflows/ci.yml"><img src="https://github.com/lukegeel101/grocery-shopping-agent-skill/actions/workflows/ci.yml/badge.svg" alt="CI status"></a>
   </p>
 </div>
 
