@@ -9,8 +9,8 @@
   </p>
 </div>
 
-Give this skill a private delivery location and a grocery list.
-It can check which services appear to deliver there, compare the cost of the complete basket, surface current deals, and recommend better-value substitutions that follow your rules.
+This reusable Agentic Skill turns a private delivery location and grocery list into a price-aware, delivery-aware shopping review.
+It checks which services appear to deliver there, compares the cost of the complete basket, surfaces current deals, and recommends better-value substitutions that follow your rules.
 
 It prepares the basket for review.
 It never places the order or touches payment information by default.
@@ -155,6 +155,11 @@ The skill separates durable user intent from replaceable market evidence.
 It normalizes package sizes, calculates delivered unit cost, compares complete-basket coverage, evaluates substitutions, and appends evidence instead of erasing history.
 
 See the [architecture diagram](docs/architecture.md) and [data contract](references/data-contract.md) for the deeper design.
+
+## Related Agentic Skill
+
+Building approval-gated tools for everyday decisions?
+See the [Personal Finance Control Center](https://github.com/lukegeel101/personal-finance-agent-skill), a privacy-first Agentic Skill for reconciling financial evidence, finding recurring costs, and preparing decision-ready reviews.
 
 ## Repository map
 
