@@ -68,6 +68,31 @@ Action taken
 
 The numbers above are fictional, but the comparison structure is the real output contract.
 
+## Measured fictional demo
+
+<p align="center">
+  <img src="assets/demo.gif" alt="Animated grocery basket evaluation using fictional data" width="900">
+</p>
+
+The committed evaluation compares three fictional delivery services across four required items.
+It rejects incomplete baskets and protected-rule violations, includes mandatory fees and explicit coupons, and proposes substitutions without applying them.
+
+| Reproducible metric | Result |
+| --- | ---: |
+| Services evaluated | 3 |
+| Complete, rule-compliant baskets | 2 |
+| Baseline delivered total | $36.75 |
+| Best delivered total | $29.50 |
+| Fictional estimated savings | $7.25, or 19.73% |
+| Substitutions proposed for review | 2 |
+| Orders placed | 0 |
+
+```bash
+python3 scripts/evaluate_sample.py --check
+```
+
+See [docs/evaluation.md](docs/evaluation.md) for the fixture, method, and interpretation.
+
 ## Private location input
 
 The public example reads the delivery address from an environment variable instead of storing it in JSON.
@@ -170,13 +195,20 @@ See the [Personal Finance Control Center](https://github.com/lukegeel101/persona
 |-- agents/openai.yaml             ChatGPT/Codex metadata
 |-- assets/readme-hero.svg         README artwork
 |-- config/grocery.example.json    Privacy-safe configuration
-|-- data/                           Fictional list and offer evidence
+|-- data/                           Fictional list, offers, and evaluation fixtures
 |-- examples/                       Prompts and a review example
 |-- references/                     Workflow and data contract
 |-- schemas/                        JSON schemas
+|-- scripts/evaluate_sample.py     Reproducible complete-basket benchmark
 |-- scripts/validate_workspace.py  Dependency-free validator
 `-- tests/                          Regression tests
 ```
+
+## Contributing
+
+Start with [CONTRIBUTING.md](CONTRIBUTING.md), review the [roadmap](ROADMAP.md), and use fictional data in every public issue or pull request.
+
+Security and privacy concerns should follow [SECURITY.md](SECURITY.md).
 
 ## Status
 

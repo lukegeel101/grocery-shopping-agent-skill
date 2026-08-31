@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title description">
+  <title id="title">Grocery evaluation result</title>
+  <desc id="description">Value Cart is selected for review with 7 dollars and 25 cents of fictional savings and no external action taken.</desc>
+  <rect width="1200" height="675" rx="30" fill="#0f766e"/>
+  <circle cx="1080" cy="40" r="260" fill="#bef264" opacity="0.12"/>
+  <circle cx="100" cy="650" r="220" fill="#082f49" opacity="0.35"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="70" y="88" fill="#ecfccb" font-size="19" font-weight="700" letter-spacing="3">REVIEW-READY RESULT</text>
+    <text x="70" y="145" fill="#ffffff" font-size="42" font-weight="800">Best complete basket found</text>
+    <text x="70" y="182" fill="#d1fae5" font-size="21">The recommendation is ready. Purchasing remains behind your approval gate.</text>
+    <g transform="translate(70 228)">
+      <rect width="560" height="340" rx="28" fill="#ffffff"/>
+      <text x="34" y="56" fill="#64748b" font-size="17" font-weight="700">VALUE CART</text>
+      <text x="34" y="122" fill="#0f172a" font-size="52" font-weight="800">$29.50</text>
+      <text x="34" y="154" fill="#64748b" font-size="17">fictional delivered total</text>
+      <g transform="translate(34 192)"><rect width="492" height="90" rx="18" fill="#ecfccb"/><text x="24" y="36" fill="#166534" font-size="16" font-weight="700">SAVINGS VS. BASELINE</text><text x="24" y="70" fill="#14532d" font-size="30" font-weight="800">$7.25  |  19.73%</text></g>
+      <text x="34" y="318" fill="#334155" font-size="17">Complete coverage: 4 of 4 items</text>
+    </g>
+    <g transform="translate(670 228)">
+      <rect width="460" height="152" rx="24" fill="#ffffff" opacity="0.98"/>
+      <circle cx="48" cy="52" r="22" fill="#22c55e"/><path d="M38 52l8 8 15-19" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="88" y="49" fill="#0f172a" font-size="21" font-weight="800">2 smart swaps proposed</text>
+      <text x="88" y="79" fill="#64748b" font-size="17">Both preserve the saved rules.</text>
+      <text x="88" y="116" fill="#166534" font-size="16" font-weight="700">0 protected-rule violations</text>
+      <g transform="translate(0 180)"><rect width="460" height="160" rx="24" fill="#082f49"/><circle cx="48" cy="58" r="22" fill="#f59e0b"/><path d="M48 44v18m0 12h.1" stroke="#fff" stroke-width="6" stroke-linecap="round"/><text x="88" y="55" fill="#ffffff" font-size="21" font-weight="800">Waiting for your approval</text><text x="88" y="87" fill="#d1fae5" font-size="17">Orders placed: 0</text><rect x="88" y="107" width="246" height="34" rx="17" fill="#ffffff" opacity="0.14"/><text x="211" y="130" fill="#ffffff" font-size="15" font-weight="700" text-anchor="middle">NO EXTERNAL ACTION TAKEN</text></g>
+    </g>
+    <text x="1130" y="635" fill="#d1fae5" font-size="17" text-anchor="end">3 / 3</text>
+  </g>
+</svg>

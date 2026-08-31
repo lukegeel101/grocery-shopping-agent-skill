@@ -113,3 +113,15 @@ Verified fix: fetch and inspect the remote commit, retain its README copy and cr
 Issue: the installed GitHub CLI does not expose an `isLatest` field through `gh release view --json`, so the first release-verification query was rejected.
 
 Verified fix: query the supported tag, draft, prerelease, immutability, publication-time, target, and URL fields, then confirm that `v0.1.0` is a published non-draft release.
+
+## Keep the patch terminator outside added file content
+
+Issue: the first combined community-file patch accidentally prefixed the patch terminator as added content, so `apply_patch` rejected the patch before changing any file.
+
+Verified fix: correct the final patch marker, reapply the complete patch, and verify that all community files were created in their intended paths.
+
+## Read GIF loop metadata from verbose identification output
+
+Issue: ImageMagick warned that the compact `%[iterations]` property was unknown while checking the generated demo GIF.
+
+Verified fix: inspect the GIF with `identify -verbose`, confirm all three frame delays, and verify that every frame reports `Iterations: 0` for continuous looping.

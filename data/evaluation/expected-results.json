@@ -1,0 +1,14 @@
+{
+  "actions_taken": 0,
+  "baseline_delivered_total": 36.75,
+  "baseline_service": "Neighborhood Express",
+  "best_complete_service": "Value Cart",
+  "best_delivered_total": 29.5,
+  "complete_services": 2,
+  "protected_rule_violations": 0,
+  "required_items": 4,
+  "savings_amount": 7.25,
+  "savings_percent": 19.73,
+  "services_evaluated": 3,
+  "substitution_proposals": 2
+}
