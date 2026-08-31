@@ -12,6 +12,7 @@ Use this skill when the user wants to maintain, review, price-check, or optimize
 - Never place an order, submit payment, sign in, redeem a coupon, change a membership, or modify an external account unless the user separately requests that exact action and confirms it at action time.
 - Treat the default workflow as research and review only.
 - Never store credentials, cookies, exact street addresses, access codes, payment data, or loyalty identifiers in repository files.
+- An exact delivery address may be accepted from a private runtime input for coverage research, but it must not be written to state, evidence, logs, prompts, screenshots, or reports.
 - Never replace a user-owned preference with an inference.
 - Never mark an item purchased or an order completed without direct confirmation.
 
@@ -27,14 +28,15 @@ Do not overwrite user-owned fields during research.
 2. Apply requested add, remove, edit, skip, or purchased operations while preserving an audit trail.
 3. Determine the review horizon from the configured cadence and calculate target quantities from known consumption or explicit user rules.
 4. If consumption is unknown, ask or flag the quantity for review instead of inventing a precise amount.
-5. Research current price, package size, availability, coupon terms, membership requirements, mandatory fees, and source timestamps for active items.
-6. Normalize item and delivered unit prices before comparing options.
-7. Prefer a complete basket when practical and show a split-order alternative only when its savings exceed the configured threshold.
-8. Consider a substitute only when the item permits substitutions and every protected attribute remains satisfied.
-9. State package-size, quantity, quality, dietary, and price differences for every proposed substitute.
-10. Produce a review packet with keep, buy, substitute, postpone, unavailable, and needs-input sections.
-11. Append price evidence and a run summary without deleting prior evidence.
-12. Stop at the approval queue.
+5. Use the private runtime delivery location, when available, to narrow service eligibility without persisting the address.
+6. Research current price, package size, availability, coupon terms, membership requirements, mandatory fees, and source timestamps for active items.
+7. Normalize item and delivered unit prices before comparing options.
+8. Prefer a complete basket when practical and show a split-order alternative only when its savings exceed the configured threshold.
+9. Consider a substitute only when the item permits substitutions and every protected attribute remains satisfied.
+10. State package-size, quantity, quality, dietary, and price differences for every proposed substitute.
+11. Produce a review packet with keep, buy, substitute, postpone, unavailable, and needs-input sections.
+12. Append price evidence and a run summary without deleting prior evidence.
+13. Stop at the approval queue.
 
 ## Deal and coupon evidence
 

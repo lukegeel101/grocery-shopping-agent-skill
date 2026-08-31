@@ -70,6 +70,15 @@ def validate_config(config: dict[str, Any]) -> list[str]:
     errors: list[str] = []
     if config.get("schema_version") != 1:
         errors.append("config.schema_version must be 1")
+    location = config.get("delivery_location", {})
+    if location.get("input") != "environment_variable":
+        errors.append("config.delivery_location.input must be environment_variable in the public example")
+    if location.get("environment_variable") != "GROCERY_DELIVERY_ADDRESS":
+        errors.append("config.delivery_location.environment_variable must be GROCERY_DELIVERY_ADDRESS")
+    if location.get("storage") != "runtime_only":
+        errors.append("config.delivery_location.storage must be runtime_only")
+    if "value" in location:
+        errors.append("config.delivery_location must not contain an address value")
     review = config.get("review", {})
     if review.get("schedule") != "weekly":
         errors.append("config.review.schedule must be weekly in the public example")
@@ -196,4 +205,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

@@ -29,6 +29,9 @@ Do not create precise nutrition or consumption assumptions from a broad food des
 
 ## 3. Collect evidence
 
+Load the delivery location from the configured private runtime input when address-level coverage matters.
+Use the location only for the current research run and never copy the exact address into state, evidence, logs, screenshots, or the review packet.
+
 For every active item and candidate service, record:
 
 - Exact product and package size.
@@ -84,4 +87,3 @@ The packet should answer:
 Append price evidence and the run summary.
 Do not rewrite old evidence to match new prices.
 Mark stale evidence as stale rather than deleting it.
-

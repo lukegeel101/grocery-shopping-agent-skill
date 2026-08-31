@@ -23,6 +23,12 @@ class GroceryWorkspaceValidationTests(unittest.TestCase):
         errors = VALIDATOR.find_sensitive_keys({"checkout": {"card_number": "sample"}})
         self.assertTrue(any("card_number" in error for error in errors))
 
+    def test_delivery_address_value_is_rejected_from_public_config(self) -> None:
+        config = VALIDATOR.load_json(VALIDATOR.CONFIG_PATH)
+        config["delivery_location"]["value"] = "123 Example Street"
+        errors = VALIDATOR.validate_config(config)
+        self.assertTrue(any("must not contain an address value" in error for error in errors))
+
     def test_bad_offer_total_is_rejected(self) -> None:
         state = VALIDATOR.load_json(VALIDATOR.LIST_PATH)
         _, item_ids, item_units = VALIDATOR.validate_items(state)
@@ -47,4 +53,3 @@ class GroceryWorkspaceValidationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

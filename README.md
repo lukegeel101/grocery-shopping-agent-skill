@@ -1,89 +1,181 @@
-# Grocery Shopping Agent Skill
+<div align="center">
+  <img src="assets/readme-hero.svg" alt="Grocery Shopping Agent" width="100%">
+  <h1>Grocery Shopping Agent</h1>
+  <p><strong>Your grocery list, but price-aware, delivery-aware, and much less annoying.</strong></p>
+  <p>
+    <img src="https://img.shields.io/badge/mode-review%20only-16a34a?style=for-the-badge" alt="Review only">
+    <img src="https://img.shields.io/badge/works%20with-ChatGPT%20%2B%20Claude-0f766e?style=for-the-badge" alt="Works with ChatGPT and Claude">
+    <img src="https://img.shields.io/badge/tests-5%20passing-65a30d?style=for-the-badge" alt="Five passing tests">
+  </p>
+</div>
 
-A reusable, approval-gated agent workflow for maintaining a persistent grocery list, reviewing it on a schedule, finding current deals and coupons, and proposing sensible substitutions.
+Give this skill a private delivery location and a grocery list.
+It can check which services appear to deliver there, compare the cost of the complete basket, surface current deals, and recommend better-value substitutions that follow your rules.
 
-The agent prepares a review packet.
-It does not place orders, submit payments, sign in to shopping accounts, or change account settings.
+It prepares the basket for review.
+It never places the order or touches payment information by default.
 
-## What it does
+## The fun part
 
-- Maintains recurring, this-week, and one-time grocery items in structured data.
-- Supports add, remove, edit, skip, and purchased operations without losing history.
-- Runs a configurable weekly review and also supports on-demand checks.
-- Compares item price, unit price, coupons, mandatory fees, basket coverage, and estimated delivered total.
-- Proposes substitutions only when the item policy permits them.
-- Records source URLs, timestamps, confidence, membership requirements, and coupon terms.
-- Produces a compact approval queue before any external action.
+| You tell it | It can do |
+| --- | --- |
+| "I moved. Use my new delivery address." | Load the address from a private runtime input, narrow delivery coverage, and keep the address out of saved state and logs. |
+| "Find the cheapest way to get everything this week." | Compare the estimated delivered total, mandatory fees, coupons, and basket coverage instead of chasing one misleading low item price. |
+| "You can swap vegetables, but never my coffee." | Automatically evaluate allowed substitutions while protecting brand locks, dietary rules, product form, quality, and size. |
+| "I meal prep every Sunday." | Turn cadence and consumption rules into a review horizon and target quantities. |
+| "Only show deals that are actually current." | Record the source, checked time, coupon terms, membership requirement, and confidence for each offer. |
 
-## Repository layout
+> [!TIP]
+> The cheapest product is not always the cheapest basket.
+> A delivery fee, minimum-order charge, or missing item can erase the apparent savings.
+
+## From address to a review-ready basket
+
+```mermaid
+flowchart LR
+    A[Private delivery location] --> C[Service coverage]
+    B[Persistent grocery list] --> D[Active weekly basket]
+    C --> E[Prices, deals, fees, availability]
+    D --> E
+    E --> F[Normalize unit and delivered cost]
+    F --> G[Evaluate allowed smart swaps]
+    G --> H[Best complete basket]
+    H --> I[Your approval queue]
+```
+
+The location is used only for the current research run when supplied through private runtime input.
+The exact address is not written into the repository, grocery state, evidence history, screenshots, or review packet.
+
+## A weekly review might look like this
 
 ```text
-.
-|-- SKILL.md                       Agent instructions
-|-- CLAUDE.md                      Claude-style entrypoint
-|-- agents/openai.yaml             ChatGPT/Codex UI metadata
-|-- config/grocery.example.json    Safe configuration example
-|-- data/sample-grocery-list.json  Fictional grocery state
-|-- data/sample-offers.json        Fictional price and coupon evidence
-|-- schemas/                       JSON schemas
-|-- references/                    Workflow and data-contract details
-|-- examples/                      Prompts and a sample review packet
-|-- scripts/validate_workspace.py  Dependency-free validator
-|-- tests/                         Regression tests
-`-- linkedin-post.md               Launch-post draft
+This week: 8 active items across 3 possible delivery services
+
+Best complete basket
+  Example Market Delivery                    $52.40
+  Basket coverage                            8 of 8 items
+  Supported coupons                          $6.00
+  Checkout-only taxes and tips               Not included
+
+Smart swap for review
+  Frozen broccoli 16 oz -> store-brand 20 oz
+  Estimated savings                          $1.80
+  Protected rules                            Passed
+
+Action taken
+  None. Waiting for your approval.
 ```
+
+The numbers above are fictional, but the comparison structure is the real output contract.
+
+## Private location input
+
+The public example reads the delivery address from an environment variable instead of storing it in JSON.
+
+```json
+{
+  "delivery_location": {
+    "input": "environment_variable",
+    "environment_variable": "GROCERY_DELIVERY_ADDRESS",
+    "fallback_region": "Central District, Example City",
+    "storage": "runtime_only"
+  }
+}
+```
+
+Set `GROCERY_DELIVERY_ADDRESS` only in the private runtime that performs the coverage check.
+Use a city or postal-code fallback when exact address eligibility is unnecessary.
 
 ## Quick start
 
-1. Copy `config/grocery.example.json` to a private working location and edit the non-sensitive preferences.
+1. Copy `config/grocery.example.json` to a private working location.
 2. Copy `data/sample-grocery-list.json` to a private state file and replace the fictional rows.
-3. Run the validator.
+3. Validate the examples and safety rules.
 
 ```bash
 python3 scripts/validate_workspace.py
 python3 -m unittest discover -s tests -v
 ```
 
-4. In a ChatGPT-style skill environment, install or reference this folder and invoke `$grocery-shopping-agent-skill`.
-5. In a Claude-style project, keep `CLAUDE.md` at the repository root and ask Claude to follow the grocery workflow in `SKILL.md`.
+4. Invoke `$grocery-shopping-agent-skill` in a ChatGPT-style skill environment.
+5. In a Claude-style project, keep `CLAUDE.md` at the root and ask Claude to follow `SKILL.md`.
 
-Example request:
+## Try asking it
 
-```text
-Review my active grocery list for the next seven days.
-Check current public deals, compare delivered totals, and show substitutions separately.
-Do not place an order.
-```
-
-## Scheduling
-
-The public example defaults to a weekly Saturday review.
-The same workflow may run more frequently for price refreshes, but the order authority remains review-only.
-
-Use the scheduler available in your agent environment to invoke a prompt such as:
+### Build this week's basket
 
 ```text
-Use $grocery-shopping-agent-skill to perform the weekly review using my private config and grocery-state files.
-Refresh current evidence, append history, and return the approval queue.
-Do not place an order or sign in to a retailer.
+Review my grocery list for the next seven days.
+Use my private delivery location to compare services, current deals, and estimated delivered totals.
+Show substitutions separately and stop at the approval queue.
 ```
 
-## Safety model
+### Change a rule
 
-The public repository contains only fictional sample data.
-Store real grocery preferences, location details, retailer sessions, and payment data outside the repository.
-Do not put an exact street address, access code, credentials, cookies, loyalty identifiers, or payment details in agent-readable state.
+```text
+Make rice recurring every two weeks.
+Allow store-brand substitutions, but keep the same rice type and never reduce the total package quantity.
+```
 
-See [SECURITY.md](SECURITY.md) and [references/workflow.md](references/workflow.md) before connecting external services.
+### Hunt for deals without changing the list
 
-## Validation
+```text
+Refresh deals for active items only.
+Do not change quantities or preferred products.
+Flag membership-only and checkout-only claims as unverified.
+```
 
-The included validator checks required fields, schedule settings, item state, offer provenance, and common sensitive-key mistakes.
-It intentionally uses only the Python standard library.
+More prompts are available in [examples/prompts.md](examples/prompts.md).
+
+## What the agent remembers
+
+- Recurring, this-week, and one-time items.
+- Quantity on hand, reorder threshold, cadence, and target quantity.
+- Preferred specifications and attributes that a substitute must preserve.
+- Whether substitutions are allowed for each item.
+- Price limits and user notes.
+- Prior price evidence and review history.
+
+User-owned preferences stay separate from agent-owned research.
+A price scan cannot silently rewrite what you asked to buy.
+
+## Guardrails that matter
+
+- No order placement, payment submission, retailer login, or account change by default.
+- No exact address, access code, credentials, cookies, or payment data in saved state.
+- No silent substitution when an item forbids it.
+- No stale coupon presented as current.
+- No "purchased" status without direct confirmation.
+
+Read [SECURITY.md](SECURITY.md) and [references/workflow.md](references/workflow.md) before connecting external services.
+
+## Under the hood
+
+The skill separates durable user intent from replaceable market evidence.
+It normalizes package sizes, calculates delivered unit cost, compares complete-basket coverage, evaluates substitutions, and appends evidence instead of erasing history.
+
+See the [architecture diagram](docs/architecture.md) and [data contract](references/data-contract.md) for the deeper design.
+
+## Repository map
+
+```text
+.
+|-- SKILL.md                       Agent instructions
+|-- CLAUDE.md                      Claude-style entrypoint
+|-- agents/openai.yaml             ChatGPT/Codex metadata
+|-- assets/readme-hero.svg         README artwork
+|-- config/grocery.example.json    Privacy-safe configuration
+|-- data/                           Fictional list and offer evidence
+|-- examples/                       Prompts and a review example
+|-- references/                     Workflow and data contract
+|-- schemas/                        JSON schemas
+|-- scripts/validate_workspace.py  Dependency-free validator
+`-- tests/                          Regression tests
+```
 
 ## Status
 
-This is a release-quality workflow template, not a retailer integration or an autonomous purchasing bot.
+This is a reusable workflow template, not a retailer integration or autonomous purchasing bot.
 Price, availability, taxes, tips, member pricing, and checkout eligibility can change and must be rechecked before purchase.
 
 ## License

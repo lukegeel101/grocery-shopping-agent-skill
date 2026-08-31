@@ -47,3 +47,27 @@ Verified fix: rerun the narrow GitHub command with approved network access, veri
 Issue: `zipinfo` treats a second archive argument as a filename pattern inside the first archive rather than as another archive to inspect.
 
 Verified fix: inspect each archive in a separate command and confirm that neither contains `.git` metadata.
+
+## A technical README can hide the fun part
+
+Issue: the original README led with the repository tree before showing the address-aware delivery comparison, deal search, and smart substitution experience.
+
+Verified fix: lead with user outcomes and visual examples, move implementation details lower, and keep every capability claim tied to the actual approval and privacy boundaries.
+
+## Keep multi-file patches scoped to the correct file
+
+Issue: the first combined redesign patch targeted a gotcha-log sentence inside the workflow reference, so patch verification rejected the entire change before editing any file.
+
+Verified fix: split the work into file-specific hunks, apply the workflow and gotcha changes to their correct paths, and verify the resulting diff before testing.
+
+## Preview SVG artwork through a rendered copy
+
+Issue: the local image viewer does not open SVG files directly, so it could not provide the required visual inspection of the README hero artwork.
+
+Verified fix: validate the source SVG as XML, render a temporary PNG with ImageMagick, visually inspect the PNG, and keep the resolution-independent SVG as the only repository asset.
+
+## Use the supported Ruby YAML interface
+
+Issue: the installed Ruby YAML library does not expose `safe_load_file`, so the first final metadata check failed before parsing the agent manifest.
+
+Verified fix: read the file explicitly and pass its contents to `YAML.safe_load`; the manifest then parsed successfully with aliases disabled.

@@ -1,7 +1,12 @@
 {
   "schema_version": 1,
   "profile_label": "Example household",
-  "market_region": "Central District, Example City",
+  "delivery_location": {
+    "input": "environment_variable",
+    "environment_variable": "GROCERY_DELIVERY_ADDRESS",
+    "fallback_region": "Central District, Example City",
+    "storage": "runtime_only"
+  },
   "review": {
     "schedule": "weekly",
     "day": "Saturday",
@@ -34,4 +39,3 @@
     "offer_evidence": "data/sample-offers.json"
   }
 }
-
